@@ -18,6 +18,10 @@ class InsertToMongo:
         self.collection.insert_many(collection)
         print('the collection has been inserted')
         logging.info('the collection has been inserted')
+    def insert_cdc_to_mongo(self,collection):
+        self.collection.insert_one(collection)
+        print('the collection has been inserted')
+        logging.info('the collection has been inserted')
 
     def update_collection_to_mongo(self,id,document):
         self.collection.update_one({'_id':id},{'$set':document})
