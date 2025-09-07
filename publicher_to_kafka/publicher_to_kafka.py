@@ -16,6 +16,7 @@ class PublicherToKafka:
         self.producer.flush()
         print('message published')
         logging.info('message published')
+        print(f'the message is {message}')
 
 # producer = KafkaProducer(
 #     bootstrap_servers=BOOTSTRAP_SERVERS,
