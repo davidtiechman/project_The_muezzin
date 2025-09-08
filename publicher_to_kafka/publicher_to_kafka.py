@@ -1,5 +1,4 @@
 import logging
-
 from kafka import KafkaProducer
 import json
 

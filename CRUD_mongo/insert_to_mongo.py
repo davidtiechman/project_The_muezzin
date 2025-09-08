@@ -1,27 +1,34 @@
 import logging
 import os
 import pymongo
+from logger import Logger
+from CRUD_mongo.mongo_config import DATA_BASE, MONGO_COLLECTION, HOST, PORT
+
 
 class InsertToMongo:
     def __init__(self):
-        self.HOST = os.environ.get("MONGO_HOST", "localhost")
-        self.PORT = int(os.environ.get("MONGO_PORT", 27017))
-        self.DATABASE = os.environ.get("MONGO_DATABASE", "weak_12")
-        self.COLLECTION = os.environ.get("MONGO_COLLECTION", "new_tweets_antisemitic")
+        self.HOST = HOST
+        self.PORT = PORT
+        self.DATABASE = DATA_BASE
+        self.COLLECTION = MONGO_COLLECTION
         self.URL = f"mongodb://{self.HOST}:{self.PORT}/"
+        self.logger = Logger.get_logger()
 
-        self.client = pymongo.MongoClient(self.URL)
+        # self.client = pymongo.MongoClient(self.URL)
+        self.client = pymongo.MongoClient('localhost', 27018)
         self.db = self.client[self.DATABASE]
         self.collection = self.db[self.COLLECTION]
 
     def insert_collection_to_mongo(self,collection):
         self.collection.insert_many(collection)
         print('the collection has been inserted')
-        logging.info('the collection has been inserted')
-    def insert_cdc_to_mongo(self,collection):
+        self.logger.info('the collection has been inserted')
+        self.logger.error('not cant insert collection to mongo')
+    def insert_doc_to_mongo(self,collection):
         self.collection.insert_one(collection)
         print('the collection has been inserted')
-        logging.info('the collection has been inserted')
+        self.logger.info('the doc has been inserted')
+        self.logger.error('not cant insert doc to mongo')
 
     def update_collection_to_mongo(self,id,document):
         self.collection.update_one({'_id':id},{'$set':document})
