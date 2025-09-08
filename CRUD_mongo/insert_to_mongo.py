@@ -11,24 +11,26 @@ class InsertToMongo:
         self.PORT = PORT
         self.DATABASE = DATA_BASE
         self.COLLECTION = MONGO_COLLECTION
-        self.URL = f"mongodb://{self.HOST}:{self.PORT}/"
+        # self.URL = f"mongodb://{self.HOST}:{self.PORT}/"
+        self.URL = 'localhost:27017'
         self.logger = Logger.get_logger()
 
-        # self.client = pymongo.MongoClient(self.URL)
-        self.client = pymongo.MongoClient('localhost', 27018)
+        self.client = pymongo.MongoClient(self.URL)
         self.db = self.client[self.DATABASE]
         self.collection = self.db[self.COLLECTION]
 
     def insert_collection_to_mongo(self,collection):
-        self.collection.insert_many(collection)
-        print('the collection has been inserted')
-        self.logger.info('the collection has been inserted')
-        self.logger.error('not cant insert collection to mongo')
+        try:
+            self.collection.insert_many(collection)
+            self.logger.info('the collection has been inserted')
+        except:
+            self.logger.error('not cant insert collection to mongo')
     def insert_doc_to_mongo(self,collection):
-        self.collection.insert_one(collection)
-        print('the collection has been inserted')
-        self.logger.info('the doc has been inserted')
-        self.logger.error('not cant insert doc to mongo')
+        try:
+            self.collection.insert_one(collection)
+            self.logger.info('the doc has been inserted')
+        except:
+            self.logger.error('not cant insert doc to mongo')
 
     def update_collection_to_mongo(self,id,document):
         self.collection.update_one({'_id':id},{'$set':document})

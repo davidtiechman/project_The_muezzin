@@ -2,6 +2,9 @@ import pymongo
 import os
 from bson.objectid import ObjectId
 
+from logger import Logger
+
+
 class GetCollection:
     def __init__(self):
         self.HOST = os.environ.get("MONGO_HOST", "localhost")
@@ -10,6 +13,7 @@ class GetCollection:
         # self.DATABASE = os.environ.get("project_IDF")
         self.COLLECTION = os.environ.get("MONGO_COLLECTION", "new_tweets_antisemitic")
         self.URL = f"mongodb://{self.HOST}:{self.PORT}/"
+        self.logger = Logger.get_logger()
 
         self.client = pymongo.MongoClient(self.URL)
         self.db = self.client[self.DATABASE]
