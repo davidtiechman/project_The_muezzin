@@ -12,9 +12,9 @@ class GetMetadata:
         self.name_file = None
     def get_metadata(self):
         self.created = Path(self.reference).stat().st_ctime
-        # self.created = datetime.fromtimestamp(self.created)
+        self.created = datetime.fromtimestamp(self.created)
         self.size = Path(self.reference).stat().st_size
-        name_file = self.reference.split("\\")[-1]
+        name_file = Path(self.reference).name
         self.name_file = name_file
         file = FileAudio(self.reference,self.created,self.size,self.name_file)
         file = file.get_in_dict()
@@ -24,8 +24,8 @@ class GetMetadata:
 
 
 
-get = GetMetadata("C:\hostile audio files\podcasts\download (1).wav")
-meta = get.get_metadata()
+# get = GetMetadata("C:\hostile audio files\podcasts\download (1).wav")
+# meta = get.get_metadata()
 
 
 

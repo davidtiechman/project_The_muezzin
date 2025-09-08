@@ -24,4 +24,4 @@ class PublicherToKafka:
 # )
 
 # kaf = PublicherToKafka()
-# kaf.publishing_to_kafka(kaf.TOPIC,{"name": "nachmen", "action": "test"})
+# kaf.publishing_to_kafka('references_and_metadata',[{"name": "nachmen", "action": "test"},{"name": "nachmen", "action": "five"}])

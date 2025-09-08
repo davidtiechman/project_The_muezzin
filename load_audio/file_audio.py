@@ -6,9 +6,9 @@ class FileAudio:
         self.name_file = name_file
     def get_in_dict(self):
         arr_fild = {
-            'reference': self.reference,
-            'created': self.created,
-            'size': self.size,
-            'name_file': self.name_file
+            'reference': str(self.reference),
+            'created':str(self.created),
+            'size': str(self.size),
+            'name_file':str(self.name_file)
         }
         return arr_fild
