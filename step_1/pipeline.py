@@ -1,9 +1,10 @@
 from pathlib import Path
 from load_audio.given_metadata import GetMetadata
-from publicher_to_kafka.publicher_to_kafka import PublicherToKafka
+from pub_and_sub_to_KAFKA.publicher_to_kafka import PublicherToKafka
 
+# starting step 1
 def run():
-    folder_path = Path("C:\hostile audio files\podcasts")
+    folder_path = Path("C:\hostile audio files\podcasts")  # rot directory
     for file in folder_path.iterdir():
         get = GetMetadata(file)
         meta = get.get_metadata()

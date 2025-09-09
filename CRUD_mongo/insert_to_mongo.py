@@ -12,7 +12,6 @@ class InsertToMongo:
         self.DATABASE = DATA_BASE
         self.COLLECTION = MONGO_COLLECTION
         self.URL = f'{self.HOST}:{self.PORT}'
-        # self.URL = 'localhost:27017'
         self.logger = Logger.get_logger()
 
         self.client = pymongo.MongoClient(self.URL)
@@ -25,9 +24,9 @@ class InsertToMongo:
             self.logger.info('the collection has been inserted in mongodb')
         except:
             self.logger.error('not cant insert collection to mongo')
-    def insert_doc_to_mongo(self,collection):
+    def insert_doc_to_mongo(self,doc):
         try:
-            self.collection.insert_one(collection)
+            self.collection.insert_one(doc)
             self.logger.info('the doc has been inserted in mongodb')
         except:
             self.logger.error('not cant insert doc to mongo')
@@ -45,5 +44,5 @@ class InsertToMongo:
 # # run = run_pipeline()
 # doc = {'name':'david'}
 # a = InsertToMongo()
-# a.insert_doc_to_mongo(doc)
+# a.insert_doc_to_mongo(1,doc)
 

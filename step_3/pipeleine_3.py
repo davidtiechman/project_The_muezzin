@@ -1,2 +1,9 @@
+from CRUD_mongo.find_mongodb import GetCollection
+
+mongo = GetCollection()
+
+
 def run():
-    pass
+    collect = mongo.get_collection()
+    with collect:
+
