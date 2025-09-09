@@ -22,7 +22,7 @@ class GetCollection:
         try:
             doc = self.collection.find({})
             self.logger.info('the collection is load')
-            return doc
+            return list(doc)
         except:
             self.logger.error('the collection is not load')
             return None
