@@ -1,5 +1,4 @@
-import logging
-
+from logger import Logger
 from elasticsearch import Elasticsearch
 from CRUD_elasticsarch.config import HOST, INDEX_NAME
 
@@ -8,13 +7,17 @@ class IndexElasticsearch:
     def __init__(self):
         self.es = Elasticsearch(HOST)
         self.INDEX_NAME = INDEX_NAME
+        self.logger = Logger.get_logger()
 
     def index_doc(self,doc,id_field=None):
         if not self.es.indices.exists(index=self.INDEX_NAME):
             self.es.indices.create(index=self.INDEX_NAME)
-            self.es.index(index=INDEX_NAME,id=id_field,document=doc)
-            print('the doc has been indexed')
-            logging.info('the doc has been indexed')
+            self.logger.info("Index created in elasticsearch")
+        try:
+            res = self.es.index(index=self.INDEX_NAME,id=id_field,document=doc)
+            self.logger.info('the doc has been indexed in elasticsearch')
+        except:
+            self.logger.error('the doc has not been indexed in elasticsearch')
 
     def index_documents(self, new_index,docs,id_field=None):
         if not self.es.indices.exists(index=self.INDEX_NAME):

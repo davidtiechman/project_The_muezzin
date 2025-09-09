@@ -18,13 +18,6 @@ def run():
             'binary_data': binary_data,
         }
         mongo.insert_doc_to_mongo(doc)
-
-
         el.index_doc(fi,fi['uinque_id'])
 
-
-
-    #                     'created': file['created'], 'size': file['size']})
-    # mong = InsertToMongo()
-    # mong.insert_cdc_to_mongo(file)
 run()

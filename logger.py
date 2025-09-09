@@ -8,7 +8,7 @@ class Logger:
     _logger = None
     @classmethod
     def get_logger(cls, name="logger", es_host=HOST,
-index="index_logging", level=logging.DEBUG):
+        index="index_logging", level=logging.DEBUG):
         if cls._logger:
             return cls._logger
         logger = logging.getLogger(name)
