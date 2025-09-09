@@ -25,11 +25,15 @@ class IndexElasticsearch:
             self.es.index(index=INDEX_NAME, id=id_field, body=docs)
 
     def update_doc(self,unique_id,new_field,new_text):
-        self.es.update(
-            index=self.INDEX_NAME,
-            id=unique_id,
-            doc={new_field: new_text}
-        )
+        try:
+            self.es.update(
+                index=self.INDEX_NAME,
+                id=unique_id,
+                doc={new_field: new_text}
+            )
+            self.logger.info('the doc has been updated in elasticsearch')
+        except:
+            self.logger.error('the doc has not been updated in elasticsearch')
 
 # docs = [{'title': 'document 1', "content": "content 1"},
 #     {'title': 'document 2', "content": "content 2"},
