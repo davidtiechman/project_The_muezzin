@@ -23,8 +23,13 @@ class IndexElasticsearch:
         if not self.es.indices.exists(index=self.INDEX_NAME):
             self.es.indices.create(index=self.INDEX_NAME)
             self.es.index(index=INDEX_NAME, id=id_field, body=docs)
-        # if i % 100 == 0:
-        #     print(f'{i} docs indexed')
+
+    def update_doc(self,unique_id,new_field,new_text):
+        self.es.update(
+            index=self.INDEX_NAME,
+            id=unique_id,
+            doc={new_field: new_text}
+        )
 
 # docs = [{'title': 'document 1', "content": "content 1"},
 #     {'title': 'document 2', "content": "content 2"},

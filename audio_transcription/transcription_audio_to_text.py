@@ -4,14 +4,13 @@ import speech_recognition as sr
 # Initialize the recognizer
 recognizer = sr.Recognizer()
 class Transcription:
-    def __init__(self,audio_file):
-        self.audio_file = audio_file
+    def __init__(self):
         self.logger = Logger.get_logger()
 # Path to your audio file
-    def transcribe(self):
+    def transcribe(self,audio_file):
         try:
             # Load the audio file
-            with sr.AudioFile(self.audio_file) as source:
+            with sr.AudioFile(audio_file) as source:
                 self.logger.info("Processing audio...")
                 audio_data_file = recognizer.record(source)  # Read the entire audio file
 
