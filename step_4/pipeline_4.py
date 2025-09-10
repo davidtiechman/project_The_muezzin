@@ -8,7 +8,7 @@ from text_classification.processor import process_text
 from text_classification.score_text import get_score
 
 
-def added_score_filed(audio_text):
+def gives_BDS_classification(audio_text):
     list_host = decrypt_base64('R2Vub2NpZGUsV2FyIENyaW1lcyxBcGFydGhlaWQsTWFzc2FjcmUsTmFrYmEsRGlzcGxhY2VtZW50LEh1bWFuaXRhcmlhbiBDcmlzaXMsQmxvY2thZGUsT2NjdXBhdGlvbixSZWZ1Z2VlcyxJQ0MsQkRT')
     list_not_host = decrypt_base64('RnJlZWRvbSBGbG90aWxsYSxSZXNpc3RhbmNlLExpYmVyYXRpb24sRnJlZSBQYWxlc3RpbmUsR2F6YSxDZWFzZWZpcmUsUHJvdGVzdCxVTlJXQQ==')
     list_host = clean_list_word(str(list_host))
@@ -21,4 +21,4 @@ def added_score_filed(audio_text):
     bds_percent = get_score(connect_audio_text,list_host,list_not_host)
     is_bds = hazard_calculation(bds_percent)
     bds_threat_level = hazard_level_calculation(is_bds)
-    return is_bds, bds_percent, bds_threat_level
+    return bds_percent, is_bds, bds_threat_level
