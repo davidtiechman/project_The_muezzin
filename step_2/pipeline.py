@@ -1,5 +1,5 @@
 from CRUD_elasticsarch.index_documents import IndexElasticsearch
-from convert_audio_to_binery.convert_audio_to_binary import convert_audio_to_binary
+from convert_audio_to_binary.convert_audio_to_binary import convert_audio_to_binary
 from CRUD_mongo.insert_to_mongo import InsertToMongo
 from load_audio.unique_id import unique_a_id
 from pub_and_sub_to_KAFKA.subscriber_with_kafka import SubscriberWithKafka
